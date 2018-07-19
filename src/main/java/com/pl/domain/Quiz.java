@@ -9,7 +9,6 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "quiz")
 public class Quiz {
 
 	@Id
@@ -18,7 +17,7 @@ public class Quiz {
 
 	@OneToOne
 	@JsonIgnore
-	private User createdBy;
+	private User user;
 
 	@Size(min = 2, max = 100, message = "The name must be between 2 and 100 messages.")
 	@NotNull(message = "Please provide a name")
@@ -50,11 +49,11 @@ public class Quiz {
 	}
 
 	public User getCreatedBy() {
-		return createdBy;
+		return user;
 	}
 
-	public void setCreatedBy(User createdBy) {
-		this.createdBy = createdBy;
+	public void setCreatedBy(User user) {
+		this.user = user;
 	}
 
 	public String getDescription() {
@@ -74,11 +73,6 @@ public class Quiz {
 	}
 
 
-	@JsonIgnore
-	public User getUser() {
-		return getCreatedBy();
-	}
-
 	public Boolean getIsPublished() {
 		return isPublished;
 	}
@@ -87,8 +81,8 @@ public class Quiz {
 		this.isPublished = isPublished;
 	}
 
-	public Quiz(User createdBy, String name, String description, List<Question> questions, Date createdDate, Boolean isPublished) {
-		this.createdBy = createdBy;
+	public Quiz(User user, String name, String description, List<Question> questions, Date createdDate, Boolean isPublished) {
+		this.user = user;
 		this.name = name;
 		this.description = description;
 		this.questions = questions;

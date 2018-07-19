@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository("AnswerRepository")
+@Repository
 public interface AnswerRepository extends JpaRepository<Answer, Long> {
 
 //	int countByQuestion(Question question);

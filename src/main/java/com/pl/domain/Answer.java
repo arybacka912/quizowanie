@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
-@Table(name = "answer")
 public class Answer {
 
     @Id
@@ -23,13 +22,24 @@ public class Answer {
     @NotNull(message = "No answer text provided")
     private String text;
 
-
+    @Column (name = "true/false")
+    private boolean isCorrectAnswer;
 
     @Column(name = "a_order")
     private Integer order;
 
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
     private Date createdDate;
+
+
+
+    public boolean isCorrectAnswer() {
+        return isCorrectAnswer;
+    }
+
+    public void setCorrectAnswer(boolean correctAnswer) {
+        isCorrectAnswer = correctAnswer;
+    }
 
     public Date getCreatedDate() {
         return createdDate;
@@ -43,8 +53,6 @@ public class Answer {
         this.text = text;
     }
 
-
-
     public Integer getOrder() {
         return order;
     }
@@ -55,13 +63,17 @@ public class Answer {
 
     @Override
     public String toString() {
-        return "Answer [text=" + text + ", order=" + order + ", createdDate=" + createdDate
+        return "Answer [text= " + text + ",isCorrectAnswer= " + isCorrectAnswer + ", order= " + order + ", createdDate= " + createdDate
                 + "]";
     }
 
-    public Answer(String text, Integer order, Date createdDate) {
+    public Answer(String text, boolean isCorrectAnswer, Integer order, Date createdDate) {
         this.text = text;
+        this.isCorrectAnswer = isCorrectAnswer;
         this.order = order;
         this.createdDate = createdDate;
+    }
+
+    public Answer() {
     }
 }

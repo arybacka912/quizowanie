@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "question")
 public class Question {
 
 	@Id
@@ -29,8 +28,6 @@ public class Question {
 	private List<Answer> answers;
 
 
-	@OneToOne
-		private Answer correctAnswer;
 
 	@Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
 	private Date createdDate;
@@ -62,8 +59,6 @@ public class Question {
 		this.text = text;
 	}
 
-
-
 	public Integer getOrder() {
 		return order;
 	}
@@ -80,19 +75,13 @@ public class Question {
 		this.isValid = isValid;
 	}
 
-	public Answer getCorrectAnswer() {
-		return correctAnswer;
-	}
 
-	public void setCorrectAnswer(Answer correctAnswer) {
-		this.correctAnswer = correctAnswer;
-	}
 
-	public Question(String text, Integer order, List<Answer> answers, Answer correctAnswer, Date createdDate, Boolean isValid) {
+	public Question(String text, Integer order, List<Answer> answers, Date createdDate, Boolean isValid) {
 		this.text = text;
 		this.order = order;
 		this.answers = answers;
-		this.correctAnswer = correctAnswer;
+
 		this.createdDate = createdDate;
 		this.isValid = isValid;
 	}

@@ -13,7 +13,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "user")
 public class User {
 
     private static final long serialVersionUID = 1L;
@@ -81,10 +80,6 @@ public class User {
     }
 
 
-    @JsonIgnore
-    public User getUser() {
-        return this;
-    }
 
     public User(String email, String username, String password, boolean enabled, Date createdDate) {
         this.email = email;

@@ -4,7 +4,10 @@ import com.pl.domain.Answer;
 import com.pl.domain.Question;
 import com.pl.domain.Quiz;
 import com.pl.domain.User;
+import com.pl.repository.AnswerRepository;
+import com.pl.repository.QuestionRepository;
 import com.pl.repository.QuizRepository;
+import com.pl.repository.UserRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.slf4j.Logger;
@@ -29,37 +32,36 @@ public class QuizowanieApp {
 
 
 		@Bean
-		public CommandLineRunner demo(QuizRepository quizRepository) {
+		public CommandLineRunner demo(QuizRepository quizRepository, AnswerRepository answerRepository,
+									  QuestionRepository questionRepository, UserRepository userRepository) {
 			Date date = Calendar.getInstance().getTime();
 
 			return (args) -> {
 				// save a couple of customers
 				List<Answer> answers = new ArrayList<>();
-				Answer answer1 = new Answer("elphant",1, date);
-				Answer answer2 = new Answer("whale",1, date);
-				Answer answer3 = new Answer("manta",1 , date);
+				Answer answer1 = new Answer("elphant",false, 1, date);
+				Answer answer2 = new Answer("whale",true, 1, date);
+				Answer answer3 = new Answer("manta",false, 1 , date);
 				answers.add(answer1);
 				answers.add(answer2);
 				answers.add(answer3);
 
+				answerRepository.save(answers);
 				User user1 = new User("main@localhost", "user1",
 						"user1", true, Calendar.getInstance().getTime());
 
+				userRepository.save(user1);
 
 				List<Question> questions = new ArrayList<>();
-				Question question1 = new Question("The biggest animal?", 1, answers, answer2, date, true);
+				Question question1 = new Question("The biggest animal?", 1, answers, date, true);
 
+				questionRepository.save(questions);
 
 				Quiz quiz1 = new Quiz(user1, "quiz1",
 						"animals", questions, Calendar.getInstance().getTime(), true);
 
 
-
-
-
 				quizRepository.save(quiz1);
-
-
 
 
 				// fetch all customers
@@ -82,7 +84,7 @@ public class QuizowanieApp {
 				// fetch customers by last name
 				log.info("Quiz found with findByLastName('quiz'):");
 				log.info("--------------------------------------------");
-				quizRepository.findByCreatedBy(new User("main@localhost", "user1",
+				quizRepository.findByUser(new User("main@localhost", "user1",
 						"user1", true, Calendar.getInstance().getTime()))
 				.forEach(quizik -> {
 					log.info(quizik.toString());
