@@ -86,15 +86,13 @@ public class QuizowanieApp {
 				// fetch customers by last name
 				log.info("Quiz found with findByLastName('quiz'):");
 				log.info("--------------------------------------------");
-				quizRepository.findByUserQuiz(new UserQuiz("main@localhost", "user1",
-						"user1", true, Calendar.getInstance().getTime()))
+				quizRepository.findByUserQuiz(userQuiz1)
 				.forEach(quiz -> {
 					log.info(quiz.toString());
 				});
-				// for (Quiz bauer : quizRepository.findByLastName("Bauer")) {
-//				// 	log.info(bauer.toString());
-//				// }
-//				log.info("");
+
+				
+				log.info("");
 			};
 		}
 
