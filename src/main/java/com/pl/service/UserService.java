@@ -1,9 +1,5 @@
 //package com.pl.service;
-//
-//import jorge.rv.quizzz.exceptions.ResourceUnavailableException;
-//import jorge.rv.quizzz.exceptions.UnauthorizedActionException;
-//import jorge.rv.quizzz.exceptions.UserAlreadyExistsException;
-//import jorge.rv.quizzz.model.User;
+
 //import org.springframework.security.core.userdetails.UserDetailsService;
 //
 //public interface UserService extends UserDetailsService {

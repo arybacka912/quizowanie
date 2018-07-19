@@ -3,11 +3,11 @@ package com.pl;
 import com.pl.domain.Answer;
 import com.pl.domain.Question;
 import com.pl.domain.Quiz;
-import com.pl.domain.User;
+import com.pl.domain.UserQuiz;
 import com.pl.repository.AnswerRepository;
 import com.pl.repository.QuestionRepository;
 import com.pl.repository.QuizRepository;
-import com.pl.repository.UserRepository;
+import com.pl.repository.UserQuizRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.slf4j.Logger;
@@ -33,7 +33,7 @@ public class QuizowanieApp {
 
 		@Bean
 		public CommandLineRunner demo(QuizRepository quizRepository, AnswerRepository answerRepository,
-									  QuestionRepository questionRepository, UserRepository userRepository) {
+									  QuestionRepository questionRepository, UserQuizRepository userQuizRepository) {
 			Date date = Calendar.getInstance().getTime();
 
 			return (args) -> {
@@ -46,18 +46,20 @@ public class QuizowanieApp {
 				answers.add(answer2);
 				answers.add(answer3);
 
-				answerRepository.save(answers);
-				User user1 = new User("main@localhost", "user1",
+				answerRepository.save(answer1);
+				answerRepository.save(answer2);
+				answerRepository.save(answer3);
+							UserQuiz userQuiz1 = new UserQuiz("main@localhost", "user1",
 						"user1", true, Calendar.getInstance().getTime());
 
-				userRepository.save(user1);
+				userQuizRepository.save(userQuiz1);
 
 				List<Question> questions = new ArrayList<>();
 				Question question1 = new Question("The biggest animal?", 1, answers, date, true);
 
-				questionRepository.save(questions);
+				questionRepository.save(question1);
 
-				Quiz quiz1 = new Quiz(user1, "quiz1",
+				Quiz quiz1 = new Quiz(userQuiz1, "quiz1",
 						"animals", questions, Calendar.getInstance().getTime(), true);
 
 
@@ -84,15 +86,15 @@ public class QuizowanieApp {
 				// fetch customers by last name
 				log.info("Quiz found with findByLastName('quiz'):");
 				log.info("--------------------------------------------");
-				quizRepository.findByUser(new User("main@localhost", "user1",
+				quizRepository.findByUserQuiz(new UserQuiz("main@localhost", "user1",
 						"user1", true, Calendar.getInstance().getTime()))
-				.forEach(quizik -> {
-					log.info(quizik.toString());
+				.forEach(quiz -> {
+					log.info(quiz.toString());
 				});
 				// for (Quiz bauer : quizRepository.findByLastName("Bauer")) {
-				// 	log.info(bauer.toString());
-				// }
-				log.info("");
+//				// 	log.info(bauer.toString());
+//				// }
+//				log.info("");
 			};
 		}
 

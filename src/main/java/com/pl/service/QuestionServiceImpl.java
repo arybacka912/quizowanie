@@ -1,12 +1,6 @@
 //package com.pl.service;
 //
-//import jorge.rv.quizzz.exceptions.ActionRefusedException;
-//import jorge.rv.quizzz.exceptions.ResourceUnavailableException;
-//import jorge.rv.quizzz.exceptions.UnauthorizedActionException;
-//import jorge.rv.quizzz.model.Answer;
-//import jorge.rv.quizzz.model.Question;
-//import jorge.rv.quizzz.model.Quiz;
-//import jorge.rv.quizzz.repository.QuestionRepository;
+
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 //import org.springframework.beans.factory.annotation.Autowired;

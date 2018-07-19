@@ -17,7 +17,7 @@ public class Quiz {
 
 	@OneToOne
 	@JsonIgnore
-	private User user;
+	private UserQuiz userQuiz;
 
 	@Size(min = 2, max = 100, message = "The name must be between 2 and 100 messages.")
 	@NotNull(message = "Please provide a name")
@@ -48,12 +48,12 @@ public class Quiz {
 		this.questions = exercises;
 	}
 
-	public User getCreatedBy() {
-		return user;
+	public UserQuiz getCreatedBy() {
+		return userQuiz;
 	}
 
-	public void setCreatedBy(User user) {
-		this.user = user;
+	public void setCreatedBy(UserQuiz userQuiz) {
+		this.userQuiz = userQuiz;
 	}
 
 	public String getDescription() {
@@ -81,8 +81,8 @@ public class Quiz {
 		this.isPublished = isPublished;
 	}
 
-	public Quiz(User user, String name, String description, List<Question> questions, Date createdDate, Boolean isPublished) {
-		this.user = user;
+	public Quiz(UserQuiz userQuiz, String name, String description, List<Question> questions, Date createdDate, Boolean isPublished) {
+		this.userQuiz = userQuiz;
 		this.name = name;
 		this.description = description;
 		this.questions = questions;
@@ -90,4 +90,6 @@ public class Quiz {
 		this.isPublished = isPublished;
 	}
 
+	public Quiz() {
+	}
 }

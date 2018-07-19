@@ -20,8 +20,8 @@ public class Question {
 
 
 
-	@Column(name = "q_order")
-	private Integer order;
+	@Column(name = "q_sign")
+	private Integer sign;
 
 
 	@OneToMany
@@ -59,12 +59,12 @@ public class Question {
 		this.text = text;
 	}
 
-	public Integer getOrder() {
-		return order;
+	public Integer getSign() {
+		return sign;
 	}
 
-	public void setOrder(Integer order) {
-		this.order = order;
+	public void setSign(Integer sign) {
+		this.sign = sign;
 	}
 
 	public Boolean getIsValid() {
@@ -77,12 +77,15 @@ public class Question {
 
 
 
-	public Question(String text, Integer order, List<Answer> answers, Date createdDate, Boolean isValid) {
+	public Question(String text, Integer sign, List<Answer> answers, Date createdDate, Boolean isValid) {
 		this.text = text;
-		this.order = order;
+		this.sign = sign;
 		this.answers = answers;
 
 		this.createdDate = createdDate;
 		this.isValid = isValid;
+	}
+
+	public Question() {
 	}
 }

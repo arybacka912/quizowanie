@@ -1,11 +1,6 @@
 //package com.pl.service;
 //
-//import jorge.rv.quizzz.exceptions.ResourceUnavailableException;
-//import jorge.rv.quizzz.exceptions.UnauthorizedActionException;
-//import jorge.rv.quizzz.model.Answer;
-//import jorge.rv.quizzz.model.Question;
-//import jorge.rv.quizzz.model.Quiz;
-//
+
 //import java.util.List;
 //
 //public interface QuestionService {

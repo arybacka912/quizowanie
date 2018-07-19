@@ -7,7 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
@@ -15,20 +14,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Answer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @Size(min = 1, max = 50, message = "The answer should be less than 50 char")
-    @NotNull(message = "No answer text provided")
     private String text;
 
-    @Column (name = "true/false")
     private boolean isCorrectAnswer;
 
-    @Column(name = "a_order")
-    private Integer order;
+    private Integer sign;
 
-    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
     private Date createdDate;
 
 
@@ -53,24 +47,24 @@ public class Answer {
         this.text = text;
     }
 
-    public Integer getOrder() {
-        return order;
+    public Integer getSign() {
+        return sign;
     }
 
-    public void setOrder(Integer order) {
-        this.order = order;
+    public void setSign(Integer sign) {
+        this.sign = sign;
     }
 
     @Override
     public String toString() {
-        return "Answer [text= " + text + ",isCorrectAnswer= " + isCorrectAnswer + ", order= " + order + ", createdDate= " + createdDate
+        return "Answer [text= " + text + ",isCorrectAnswer= " + isCorrectAnswer + ", sign= " + sign + ", createdDate= " + createdDate
                 + "]";
     }
 
-    public Answer(String text, boolean isCorrectAnswer, Integer order, Date createdDate) {
+    public Answer(String text, boolean isCorrectAnswer, Integer sign, Date createdDate) {
         this.text = text;
         this.isCorrectAnswer = isCorrectAnswer;
-        this.order = order;
+        this.sign = sign;
         this.createdDate = createdDate;
     }
 
