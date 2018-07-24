@@ -10,11 +10,4 @@ import java.util.List;
 
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, Long> {
-//	int countByQuiz(Quiz quiz);
-//
-//	int countByQuizAndIsValidTrue(Quiz quiz);
-//
-//	List<Question> findByQuizOrderByOrderAsc(Quiz quiz);
-//
-//	List<Question> findByQuizAndIsValidTrueOrderByOrderAsc(Quiz quiz);
-}
+	}

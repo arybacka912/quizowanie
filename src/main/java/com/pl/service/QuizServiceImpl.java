@@ -6,8 +6,6 @@ import com.pl.domain.Answer;
 import com.pl.domain.Question;
 import com.pl.domain.Quiz;
 import com.pl.domain.UserQuiz;
-import com.pl.dto.QuestionDto;
-import com.pl.dto.QuizowanieDto;
 import com.pl.repository.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,18 +28,18 @@ public class QuizServiceImpl implements QuizService {
     QuizRepository quizRepository;
 
     @Override
-    public QuizowanieDto getQuizowanieDto(int id) throws IOException {
+    public Quiz getQuiz(int id) throws IOException {
         return null;
     }
 
     @Override
-    public void addToDb(QuizowanieDto quizowanieDto, int id) {
-//        quizowanieJdbcService.addToQuizTable(quizowanieDto, id);
+    public void addToDb(Quiz quiz, int id) {
+//        quizowanieJdbcService.addToQuizTable(quiz, id);
 
     }
 
     @Override
-    public QuizowanieDto getQuizById(int id) {
+    public Quiz getQuizById(int id) {
         Optional<Quiz> quizFindId = quizRepository.findById(Long.valueOf(id));
 
         if (!quizFindId.isPresent()) {
@@ -49,16 +47,16 @@ public class QuizServiceImpl implements QuizService {
             return null;
         }
 
-        QuizowanieDto returnQuiz = getDtoFromQuiz(quizFindId.get());
+        Quiz returnQuiz = getDtoFromQuiz(quizFindId.get());
 
 
         return returnQuiz;
     }
 
     @Override
-    public List<QuizowanieDto> getAll() {
+    public List<Quiz> getAll() {
         List<Quiz> quizList = quizRepository.findAll();
-        List<QuizowanieDto> resultList;
+        List<Quiz> resultList;
         resultList = new ArrayList<>();
         quizList.forEach(element -> resultList.add(getDtoFromQuiz(element)));
         //quiz wyciągnąć wszystkie elementy , zamienić na dto i dodać do resultList  (forEach, for z wykorzystaniem getDtoFromQuiz)
@@ -94,26 +92,25 @@ public class QuizServiceImpl implements QuizService {
 //        return quiz;
 //    }
 
-    private QuizowanieDto getDtoFromQuiz(Quiz quizFindId) {
-        QuizowanieDto quizowanieDto = new QuizowanieDto();
+    private Quiz getDtoFromQuiz(Quiz quizFindId) {
+        Quiz quiz = new Quiz();
 
-        quizowanieDto.setNameQuiz(quizFindId.getName());
-        quizowanieDto.setUserName(quizFindId.getUserQuiz().toString());
-        quizowanieDto.setDescriptionQuiz(quizFindId.getDescription());
-        quizowanieDto.setQuestions(getQuestionDtoFromQuestion(quizFindId.getQuestions()));
-        quizowanieDto.setCreatedDate(quizFindId.getCreatedDate().toString());
-        quizowanieDto.setIsPublished(quizFindId.getIsPublished());
+        quiz.setName(quizFindId.getName());
+        quiz.setDescription(quizFindId.getDescription());
+        quiz.setQuestions(getQuestionDtoFromQuestion(quizFindId.getQuestions()));
+        quiz.setIsPublished(quizFindId.getIsPublished());
+        quiz.setUserQuiz(quizFindId.getUserQuiz());
 
-        return quizowanieDto;
+        return quiz;
 
     }
 
 //    Question - dto
-    private Question getQuestionFromQuestionDto (QuestionDto questionDtoFindId){
+    private Question getQuestionFromQuestionDto (Question questionDtoFindId){
         Question question = new Question();
 
 //        question.setAnswers(questionDtoFindId.getAnswers());
-        question.setIsValid(questionDtoFindId.isValid());
+        question.setIsValid(questionDtoFindId.getIsValid());
         question.setSign(questionDtoFindId.getSign());
         question.setText(questionDtoFindId.getText());
 
@@ -121,18 +118,17 @@ public class QuizServiceImpl implements QuizService {
 
     }
 
-    private List<QuestionDto> getQuestionDtoFromQuestion (List<Question> questionFindId){
-        List<QuestionDto> resultList = new ArrayList<>();
+    private List<Question> getQuestionDtoFromQuestion (List<Question> questionFindId){
+        List<Question> resultList = new ArrayList<>();
         questionFindId.forEach(item -> {
-            QuestionDto questionDto = new QuestionDto();
+            Question question = new Question();
 
-            questionDto.setAnswers(item.getAnswers().toString());
-            questionDto.setCreatedDate(item.getCreatedDate().toString());
-            questionDto.setSign(item.getSign());
-            questionDto.setValid(item.getIsValid());
-            questionDto.setText(item.getText());
+            question.setAnswers(item.getAnswers());
+            question.setIsValid(item.getIsValid());
+            question.setSign(item.getSign());
+            question.setText(item.getText());
 
-            resultList.add(questionDto);
+            resultList.add(question);
 
         });
 

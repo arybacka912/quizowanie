@@ -92,17 +92,6 @@ public class QuizowanieApp {
 				log.info("");
 			};
 		}
-	@Bean
-	CommandLineRunner init(QuizRepository quizRepository,
-						   UserQuizRepository userQuizRepository) {
-		return args ->
-				Arrays.asList("jhoeller","dsyer","pwebb","ogierke","rwinch","mfisher","mpollack","jlong")
-						.forEach(username -> {
-							Quiz quiz = quizRepository.save(new Quiz(email, username));
-							userQuizRepository.save(new Quiz("main@localhos.pl", username));
-							userQuizRepository.save(new Quiz());
-						});
-	}
 
 	}
 
