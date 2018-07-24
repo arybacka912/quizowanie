@@ -48,13 +48,7 @@ public class Quiz {
 		this.questions = exercises;
 	}
 
-	public UserQuiz getCreatedBy() {
-		return userQuiz;
-	}
-
-	public void setCreatedBy(UserQuiz userQuiz) {
-		this.userQuiz = userQuiz;
-	}
+	
 
 	public String getDescription() {
 		return description;
@@ -79,6 +73,15 @@ public class Quiz {
 
 	public void setIsPublished(Boolean isPublished) {
 		this.isPublished = isPublished;
+	}
+
+
+	public UserQuiz getUserQuiz() {
+		return userQuiz;
+	}
+
+	public void setUserQuiz(UserQuiz userQuiz) {
+		this.userQuiz = userQuiz;
 	}
 
 	public Quiz(UserQuiz userQuiz, String name, String description, List<Question> questions, Date createdDate, Boolean isPublished) {

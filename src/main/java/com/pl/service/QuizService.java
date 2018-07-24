@@ -3,6 +3,7 @@ package com.pl.service;
 import com.pl.dto.QuizowanieDto;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface QuizService {
 
@@ -10,5 +11,7 @@ public interface QuizService {
         public void addToDb(QuizowanieDto quizowanieDto, int id);
 
         QuizowanieDto getQuizById(int id);
-    }
+
+    List<QuizowanieDto> getAll();
+}
 

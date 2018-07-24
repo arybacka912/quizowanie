@@ -16,10 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @SpringBootApplication
 public class QuizowanieApp {
@@ -91,10 +88,21 @@ public class QuizowanieApp {
 					log.info(quiz.toString());
 				});
 
-				
+
 				log.info("");
 			};
 		}
+	@Bean
+	CommandLineRunner init(QuizRepository quizRepository,
+						   UserQuizRepository userQuizRepository) {
+		return args ->
+				Arrays.asList("jhoeller","dsyer","pwebb","ogierke","rwinch","mfisher","mpollack","jlong")
+						.forEach(username -> {
+							Quiz quiz = quizRepository.save(new Quiz(email, username));
+							userQuizRepository.save(new Quiz("main@localhos.pl", username));
+							userQuizRepository.save(new Quiz());
+						});
+	}
 
 	}
 

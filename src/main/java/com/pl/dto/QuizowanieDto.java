@@ -1,32 +1,29 @@
 package com.pl.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.hateoas.ResourceSupport;
 
-import java.util.Arrays;
-import java.util.Map;
+import java.util.List;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class QuizowanieDto extends ResourceSupport{
 
         private int idQuiz;
         private String nameQuiz;
         private String descriptionQuiz;
-        private String questions;
+        private List<QuestionDto> questions;
         private String createdDate;
         private boolean isPublished;
+        private String userName;
 
 
-
-        @JsonProperty("abilities")
-        private AbilitiesDto[] abilities;
-
-
-        @JsonProperty("stats")
-        private StatsDto[] statsDto;
 
         public QuizowanieDto() {
         }
+
+    public void getPublished(boolean published) {
+        isPublished = published;
+    }
 
     public int getIdQuiz() {
         return idQuiz;
@@ -52,11 +49,11 @@ public class QuizowanieDto extends ResourceSupport{
         this.descriptionQuiz = descriptionQuiz;
     }
 
-    public String getQuestions() {
+    public List<QuestionDto> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(String questions) {
+    public void setQuestions(List<QuestionDto> questions) {
         this.questions = questions;
     }
 
@@ -76,33 +73,16 @@ public class QuizowanieDto extends ResourceSupport{
         isPublished = isPublished;
     }
 
-    public AbilitiesDto[] getAbilities() {
-        return abilities;
+
+    public String getUserName() {
+        return userName;
     }
 
-    public void setAbilities(AbilitiesDto[] abilities) {
-        this.abilities = abilities;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public StatsDto[] getStatsDto() {
-        return statsDto;
-    }
 
-    public void setStatsDto(StatsDto[] statsDto) {
-        this.statsDto = statsDto;
-    }
-
-    public QuizowanieDto(int idQuiz, String nameQuiz, String descriptionQuiz, String questions, String createdDate,
-                         boolean isPublished, AbilitiesDto[] abilities, StatsDto[] statsDto) {
-        this.idQuiz = idQuiz;
-        this.nameQuiz = nameQuiz;
-        this.descriptionQuiz = descriptionQuiz;
-        this.questions = questions;
-        this.createdDate = createdDate;
-        this.isPublished = isPublished;
-        this.abilities = abilities;
-        this.statsDto = statsDto;
-    }
 
 
 
@@ -115,8 +95,7 @@ public class QuizowanieDto extends ResourceSupport{
                     ", questions='" + questions + '\'' +
                     ", createdDate='" + createdDate + '\'' +
                     ", isPublished='" + isPublished + '\'' +
-                    ", abilities=" + Arrays.toString(abilities) +
-                    ", statsDto=" + Arrays.toString(statsDto) +
+                    ", userName=" + userName +
                     '}';
         }
 

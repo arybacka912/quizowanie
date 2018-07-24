@@ -81,7 +81,6 @@ public class Question {
 		this.text = text;
 		this.sign = sign;
 		this.answers = answers;
-
 		this.createdDate = createdDate;
 		this.isValid = isValid;
 	}
