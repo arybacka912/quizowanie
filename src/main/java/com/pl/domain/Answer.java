@@ -25,7 +25,7 @@ public class Answer {
 
 
 
-    public boolean isCorrectAnswer() {
+    public boolean getIsCorrectAnswer() {
         return isCorrectAnswer;
     }
 
